@@ -49,17 +49,6 @@ async function loadMore() {
   loading.style.display = "none";
 }
 
-const likeBtn = document.createElement("button");
-  likeBtn.className = "like-btn";
-  likeBtn.innerHTML = "♡"; // empty heart
-
-  likeBtn.addEventListener("click", () => {
-    const liked = likeBtn.classList.toggle("liked");
-    likeBtn.innerHTML = liked ? "❤️" : "♡";
-  });
-
-  card.appendChild(likeBtn);
-  
 async function init() {
   for (let i = 0; i < 5; i++) {
     await loadMore();
