@@ -58,7 +58,7 @@ async function init() {
 init();
 
 // Infinite scroll when near the bottom
-window.addEventListener("scroll", () => {
+app.addEventListener("scroll", () => {
   const scrollY = window.scrollY + window.innerHeight;
   const height = document.documentElement.scrollHeight;
 
