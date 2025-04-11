@@ -50,19 +50,14 @@ async function loadMore() {
 }
 
 async function init() {
-  for (let i = 0; i < 5; i++) {
     await loadMore();
-  }
 }
 
 init();
 
 // Infinite scroll when near the bottom
 app.addEventListener("scroll", () => {
-  const scrollY = window.scrollY + window.innerHeight;
-  const height = document.documentElement.scrollHeight;
-
-  if (scrollY > height - 300) {
+  if (app.scrollHeight - Math.abs(app.scrollTop) === app.clientHeight) {
     loadMore();
   }
 });
