@@ -33,13 +33,14 @@ body, html {
   }
   
   #app {
+    margin-top: 60px;
     scroll-snap-type: y mandatory;
     overflow-y: scroll;
-    height: 100vh;
+    height: calc(100vh - 60px);
   }
   
   .card {
-    height: 100vh;
+    height: calc(100vh - 60px);
     width: 100vw;
     scroll-snap-align: start;
     display: flex;
@@ -52,8 +53,8 @@ body, html {
   }
   
   .card img {
-    width: 200px;
-    height: 200px;
+    width: 40vmin;
+    height: 40vmin;
     object-fit: cover;
     border-radius: 12px;
     box-shadow: 0 8px 16px rgba(0,0,0,0.1);
