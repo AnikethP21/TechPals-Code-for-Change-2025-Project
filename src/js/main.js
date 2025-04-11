@@ -1,119 +1,68 @@
-// EdTok: Full-screen vertical scroll app with Wikipedia topics and images
+const app = document.getElementById("app");
+const loading = document.getElementById("loading");
+let isLoading = false;
 
-import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
-
-const RANDOM_TOPICS = [
-  "Artificial intelligence",
-  "Photosynthesis",
-  "Black hole",
-  "Mitochondria",
-  "Quantum computing",
-  "Great Wall of China",
-  "Taj Mahal",
-  "Evolution",
-  "Human brain",
-  "Theory of relativity",
-  "Blockchain",
-  "Internet",
-  "Climate change",
-  "Machine learning",
-  "DNA",
-  "Neural network",
-  "Solar system",
-  "Volcano",
-  "Gravity",
-  "Programming language",
-  "Cybersecurity",
-  "Augmented reality",
-  "Higgs boson",
-  "Antibiotic resistance",
-  "Nanotechnology",
-  "Renewable energy",
-  "Genetic engineering",
-  "CRISPR",
-  "Space exploration",
-  "Saturn",
-  "Photoshop",
-  "Mars",
-  "Biodiversity",
-  "Astronomy",
-  "Ocean",
-  "Telescope",
-  "Bacteria",
-  "Plasma (physics)",
-  "Big Bang",
-  "Internet of things",
-  "Artificial general intelligence"
-];
-
-export default function EdTok() {
-  const [cards, setCards] = useState([]);
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const fetchRandomTopic = async () => {
-    const topic = RANDOM_TOPICS[Math.floor(Math.random() * RANDOM_TOPICS.length)];
-    try {
-      const res = await fetch(
-        `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(topic)}`
-      );
-      if (!res.ok) throw new Error("Failed to fetch article");
-      const data = await res.json();
-      return data;
-    } catch (err) {
-      return { title: "Error", extract: err.message, content_urls: { desktop: { page: "#" } }, thumbnail: null };
-    }
-  };
-
-  const loadInitialCards = async () => {
-    const newCards = await Promise.all(
-      Array.from({ length: 5 }).map(() => fetchRandomTopic())
-    );
-    setCards(newCards);
-  };
-
-  const handleScroll = (e) => {
-    if (e.deltaY > 0 && currentIndex < cards.length - 1) {
-      setCurrentIndex((prev) => prev + 1);
-    } else if (e.deltaY < 0 && currentIndex > 0) {
-      setCurrentIndex((prev) => prev - 1);
-    }
-  };
-
-  useEffect(() => {
-    loadInitialCards();
-    window.addEventListener("wheel", handleScroll, { passive: true });
-    return () => window.removeEventListener("wheel", handleScroll);
-  }, [currentIndex, cards.length]);
-
-  return (
-    <div className="h-screen w-screen overflow-hidden bg-black text-white">
-      {cards.map((card, index) => (
-        <motion.div
-          key={index}
-          className="absolute top-0 left-0 h-screen w-screen flex flex-col items-center justify-center p-8 text-center"
-          style={{ zIndex: index === currentIndex ? 1 : 0, opacity: index === currentIndex ? 1 : 0 }}
-          animate={{ opacity: index === currentIndex ? 1 : 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          {card.thumbnail?.source && (
-            <img
-              src={card.thumbnail.source}
-              alt={card.title}
-              className="w-80 h-80 object-cover rounded-2xl shadow-lg mb-6"
-            />
-          )}
-          <h2 className="text-4xl font-bold mb-4">{card.title}</h2>
-          <p className="text-lg max-w-xl mb-4">{card.extract}</p>
-          <a
-            href={card.content_urls.desktop.page}
-            target="_blank"
-            className="text-blue-400 hover:underline"
-          >
-            Read more on Wikipedia ↗
-          </a>
-        </motion.div>
-      ))}
-    </div>
-  );
+async function fetchRandomTopic() {
+  const response = await fetch("https://en.wikipedia.org/api/rest_v1/page/random/summary");
+  const data = await response.json();
+  return data;
 }
+
+function createCard(data) {
+  const card = document.createElement("section");
+  card.className = "card";
+
+  if (data.thumbnail?.source) {
+    const img = document.createElement("img");
+    img.src = data.thumbnail.source;
+    img.alt = data.title;
+    card.appendChild(img);
+  }
+
+  const title = document.createElement("h2");
+  title.textContent = data.title;
+  card.appendChild(title);
+
+  const summary = document.createElement("p");
+  summary.textContent = data.extract;
+  card.appendChild(summary);
+
+  const link = document.createElement("a");
+  link.href = data.content_urls?.desktop?.page || "#";
+  link.target = "_blank";
+  link.textContent = "Read more on Wikipedia";
+  card.appendChild(link);
+
+  return card;
+}
+
+async function loadMore() {
+  if (isLoading) return;
+  isLoading = true;
+  loading.style.display = "block";
+
+  const topic = await fetchRandomTopic();
+  const card = createCard(topic);
+  app.appendChild(card);
+
+  isLoading = false;
+  loading.style.display = "none";
+}
+
+async function init() {
+  for (let i = 0; i < 5; i++) {
+    await loadMore();
+  }
+}
+
+init();
+
+// Infinite scroll when near the bottom
+window.addEventListener("scroll", () => {
+  const scrollY = window.scrollY + window.innerHeight;
+  const height = document.documentElement.scrollHeight;
+
+  if (scrollY > height - 300) {
+    loadMore();
+  }
+});
