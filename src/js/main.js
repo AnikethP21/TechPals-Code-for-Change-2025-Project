@@ -9,7 +9,7 @@ const header = document.querySelector("header");
 window.addEventListener("hashchange", () => {
   app.className = window.location.hash.substring(1)
 
-  if (app.className !== "watch" && app.className !== "save") {
+  if (app.className !== "watch" && app.className !== "bookmark") {
     app.style.display = "none"
     if (app.className !== "home") error.style.display = "block"
     else {
@@ -129,3 +129,11 @@ app.addEventListener("scroll", () => {
     loadMore();
   }
 });
+
+document.querySelector("#home").addEventListener("click", () => {
+  window.location.hash = "#home"
+})
+
+document.querySelector("#saved").addEventListener("click", () => {
+  window.location.hash = "#bookmark"
+})

@@ -265,3 +265,11 @@ body {
   max-width: 100%;
   overflow-x: hidden;
 }
+
+#home, #saved {
+  text-decoration: underline;
+}
+
+#home:hover, #saved:hover {
+   color: #bbbbbb;
+}
