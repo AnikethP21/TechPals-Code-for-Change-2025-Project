@@ -282,4 +282,7 @@ body {
   width: 100vw;
   height: 100vh;
   background-color: #0f172a;
+  
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
 }

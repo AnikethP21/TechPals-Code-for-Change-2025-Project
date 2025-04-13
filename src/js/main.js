@@ -150,6 +150,6 @@ function addSaved() {
   const c = localStorage.getItem("Saved").split("///")
   bookmark.innerHTML = "";
   c.forEach(i => {
-    bookmark.innerHTML += i;
+    bookmark.innerHTML += `<section class="card">${i}</section>`;
   })
 }
