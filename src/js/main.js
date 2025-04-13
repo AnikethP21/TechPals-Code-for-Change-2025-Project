@@ -19,6 +19,7 @@ window.addEventListener("hashchange", () => {
     }
   }
   else {
+    if (app.className == "watch") startEdTok()
     app.style.display = "block"
     error.style.display = "none"
   }
@@ -108,7 +109,7 @@ async function loadMore() {
 }
 
 async function startEdTok() {
-  window.location.hash = "watch"
+  if (window.Location.hash !== "#watch") window.location.hash = "watch";
 
   userInterest = document.getElementById("interest").value.trim();
   if (!userInterest) return alert("Please enter a topic!");
