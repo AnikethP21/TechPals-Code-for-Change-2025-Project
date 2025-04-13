@@ -1,11 +1,13 @@
 /* Base responsive font size */
 html {
   font-size: 18px;
+  background-color: #0f172a;
+  color: #f1f5f9;
 }
 
 @media (max-width: 480px) {
   html {
-    font-size: 20px; /* bigger font for smaller screens */
+    font-size: 20px;
   }
 }
 
@@ -16,7 +18,7 @@ html {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: white;
+  background: #0f172a;
   text-align: center;
   padding: 20px;
 }
@@ -24,6 +26,7 @@ html {
 #intro-screen h2 {
   font-size: 1.4rem;
   margin-bottom: 1.2rem;
+  color: #f1f5f9;
 }
 
 #interest {
@@ -32,8 +35,10 @@ html {
   width: 80%;
   max-width: 300px;
   margin-bottom: 1rem;
-  border: 1px solid #ccc;
+  border: 1px solid #334155;
   border-radius: 8px;
+  background-color: #1e293b;
+  color: #f1f5f9;
 }
 
 #intro-screen button {
@@ -50,7 +55,7 @@ body, html {
   margin: 0;
   padding: 0;
   font-family: 'Segoe UI', sans-serif;
-  background: #f9fafb;
+  background: #0f172a;
   overflow-x: hidden;
   overscroll-behavior-y: none;
   touch-action: manipulation;
@@ -61,8 +66,8 @@ header {
   top: 0;
   width: 100%;
   height: 60px;
-  background-color: white;
-  border-bottom: 1px solid #e5e7eb;
+  background-color: #1e293b;
+  border-bottom: 1px solid #334155;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -78,6 +83,7 @@ header h1 {
   font-size: 1.1rem;
   font-weight: bold;
   margin: 0;
+  color: #f1f5f9;
 }
 
 #app {
@@ -97,7 +103,7 @@ header h1 {
   justify-content: center;
   padding: 1.5rem;
   box-sizing: border-box;
-  background: #fff;
+  background: #0f172a;
 }
 
 .card img {
@@ -105,7 +111,7 @@ header h1 {
   height: 200px;
   object-fit: cover;
   border-radius: 12px;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.5);
   margin-bottom: 1.2rem;
 }
 
@@ -113,18 +119,19 @@ header h1 {
   font-size: 1.3rem;
   text-align: center;
   margin-bottom: 0.6rem;
+  color: #f1f5f9;
 }
 
 .card p {
   font-size: 1rem;
-  color: #444;
+  color: #cbd5e1;
   text-align: center;
   max-width: 90%;
 }
 
 .card a {
   margin-top: 0.8rem;
-  color: #2563eb;
+  color: #60a5fa;
   text-decoration: underline;
   font-size: 0.9rem;
 }
@@ -132,5 +139,5 @@ header h1 {
 #loading {
   text-align: center;
   padding: 30px;
-  color: #999;
+  color: #94a3b8;
 }
