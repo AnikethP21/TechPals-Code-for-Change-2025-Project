@@ -9,9 +9,14 @@ const header = document.querySelector("header");
 window.addEventListener("hashchange", () => {
   app.className = window.location.hash.substring(1)
 
-  if (app.className !== "watch" && app.className !== "save" && app.className !== "home") {
+  if (app.className !== "watch" && app.className !== "save") {
     app.style.display = "none"
-    error.style.display = "block"
+    if (app.className !== "home") error.style.display = "block"
+    else {
+      document.getElementById("intro-screen").style.display = "flex";
+      loading.style.display = "none";
+      header.style.display = "none";
+    }
   }
   else {
     app.style.display = "block"
