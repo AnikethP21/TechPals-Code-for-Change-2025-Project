@@ -19,6 +19,10 @@ html {
   /* CSS that should be displayed if width is equal to or less than 800px goes here */
 }
 
+.spacer {
+  width: 50px;
+}
+
 #intro-screen {
   height: 100vh;
   width: 100vw;
@@ -239,6 +243,10 @@ header h1 {
     width: 280px;
     height: 280px;
   }
+
+  .spacer {
+    width: 200px;
+  }
 }
 
 input,
@@ -282,7 +290,7 @@ body {
   width: 100vw;
   height: 100vh;
   background-color: #0f172a;
-  
+
   scroll-snap-type: y mandatory;
   overflow-y: scroll;
 }
