@@ -1,95 +1,136 @@
-body, html {
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: #f9fafb;
-    overflow-x: hidden;
-    overscroll-behavior-y: none;
-    touch-action: manipulation;
-  }
-  
-  header {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    height: 60px;
-    background-color: white;
-    border-bottom: 1px solid #e5e7eb;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 10;
-  }
-  
-  header img {
-    height: 35px;
-    margin-right: 10px;
-  }
-  
-  header h1 {
-    font-size: 20px;
-    font-weight: bold;
-    margin: 0;
-  }
-  
-  #app {
-    margin-top: 60px;
-    scroll-snap-type: y mandatory;
-    overflow-y: scroll;
-    height: calc(100vh - 60px);
-  }
-  
-  .card {
-    height: calc(100vh - 60px);
-    width: 100vw;
-    scroll-snap-align: start;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 24px;
-    box-sizing: border-box;
-    background: #fff;
-  }
-  
-  .card img {
-    width: 40vmin;
-    height: 40vmin;
-    object-fit: cover;
-    border-radius: 12px;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-    margin-bottom: 20px;
-  }
-  
-  .card h2 {
-    font-size: 22px;
-    text-align: center;
-    margin-bottom: 10px;
-  }
-  
-  .card p {
-    font-size: 16px;
-    color: #444;
-    text-align: center;
-    max-width: 90%;
-  }
-  
-  .card a {
-    margin-top: 12px;
-    color: #2563eb;
-    text-decoration: underline;
-    font-size: 15px;
-  }
-  
-  #loading {
-    text-align: center;
-    padding: 30px;
-    color: #999;
-  }
+/* Base responsive font size */
+html {
+  font-size: 18px;
+}
 
-  .error {
-    display: none;
-    text-align: center;
-    width: 100vw;
-    height: 100vh;
+@media (max-width: 480px) {
+  html {
+    font-size: 20px; /* bigger font for smaller screens */
   }
+}
+
+#intro-screen {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  text-align: center;
+  padding: 20px;
+}
+
+#intro-screen h2 {
+  font-size: 1.4rem;
+  margin-bottom: 1.2rem;
+}
+
+#interest {
+  font-size: 1rem;
+  padding: 0.6rem 0.8rem;
+  width: 80%;
+  max-width: 300px;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+#intro-screen button {
+  font-size: 1rem;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f9fafb;
+  overflow-x: hidden;
+  overscroll-behavior-y: none;
+  touch-action: manipulation;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 60px;
+  background-color: white;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+header img {
+  height: 35px;
+  margin-right: 10px;
+}
+
+header h1 {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+#app {
+  margin-top: 60px;
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  height: calc(100vh - 60px);
+}
+
+.card {
+  height: calc(100vh - 60px);
+  width: 100vw;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  box-sizing: border-box;
+  background: #fff;
+}
+
+.card img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  margin-bottom: 1.2rem;
+}
+
+.card h2 {
+  font-size: 1.3rem;
+  text-align: center;
+  margin-bottom: 0.6rem;
+}
+
+.card p {
+  font-size: 1rem;
+  color: #444;
+  text-align: center;
+  max-width: 90%;
+}
+
+.card a {
+  margin-top: 0.8rem;
+  color: #2563eb;
+  text-decoration: underline;
+  font-size: 0.9rem;
+}
+
+#loading {
+  text-align: center;
+  padding: 30px;
+  color: #999;
+}
