@@ -7,6 +7,8 @@ This is our project for our first hackathon 🥳
 
 Click on this link to access our project:
 https://anikethp21.github.io/TechPals-Code-for-Change-2025-Project/#home
+Edutok is live! More coming stay tuned.
+https://youtube.com/shorts/SvqJ7SkEHHY?feature=share
 
 Click on this link to access our video:
 https://www.youtube.com/shorts/5egdQX1y0r0
