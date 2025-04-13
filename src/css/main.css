@@ -247,3 +247,21 @@ textarea,
 select {
   font-size: 16px !important; /* Prevents iOS zoom bug */
 }
+
+/* Set proper viewport height for mobile browsers */
+body {
+  min-height: 100dvh; /* Better support than 100vh on iOS */
+}
+
+/* Prevent scroll bounce on iOS */
+html,
+body {
+  overscroll-behavior: none;
+}
+
+/* Prevent horizontal scroll from minor layout bugs */
+* {
+  box-sizing: border-box;
+  max-width: 100%;
+  overflow-x: hidden;
+}
