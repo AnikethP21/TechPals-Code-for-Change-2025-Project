@@ -141,3 +141,11 @@ header h1 {
   padding: 30px;
   color: #94a3b8;
 }
+
+.error {
+  margin-top: 40vh;
+  display: none;
+  text-align: center;
+  width: 100vw;
+  height: 60vh;
+}

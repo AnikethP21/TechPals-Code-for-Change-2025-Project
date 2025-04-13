@@ -1,6 +1,23 @@
+window.location.hash = "home"
+
+
+const error = document.querySelector(".error");
 const app = document.getElementById("app");
 const loading = document.getElementById("loading");
 const header = document.querySelector("header");
+
+window.addEventListener("hashchange", () => {
+  app.className = window.location.hash.substring(1)
+
+  if (app.className !== "watch" && app.className !== "save" && app.className !== "home") {
+    app.style.display = "none"
+    error.style.display = "block"
+  }
+  else {
+    app.style.display = "block"
+    error.style.display = "none"
+  }
+})
 
 let userInterest = "";
 let isLoading = false;
@@ -45,11 +62,27 @@ function createCard(data) {
   summary.textContent = data.extract;
   card.appendChild(summary);
 
+  const save = document.createElement("button");
+  save.textContent = "save";
+  card.appendChild(save);
+
+  const share = document.createElement("button");
+  share.textContent = "share";
+  card.appendChild(share);
+
   const link = document.createElement("a");
   link.href = data.content_urls?.desktop?.page || "#";
   link.target = "_blank";
   link.textContent = "Read more on Wikipedia";
   card.appendChild(link);
+
+  save.addEventListener("click", e => {
+    if (!localStorage.Saved) localStorage.setItem("Saved", card.innerHTML)
+      
+    if (localStorage.getItem("Saved").includes(card.innerHTML)) return;
+    
+    localStorage.setItem("Saved", localStorage.getItem("Saved") + "///" + card.innerHTML)
+  })
 
   return card;
 }
@@ -70,6 +103,8 @@ async function loadMore() {
 }
 
 async function startEdTok() {
+  window.location.hash = "watch"
+
   userInterest = document.getElementById("interest").value.trim();
   if (!userInterest) return alert("Please enter a topic!");
 
