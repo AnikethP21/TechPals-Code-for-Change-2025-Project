@@ -3,31 +3,17 @@ window.location.hash = "home"
 
 const error = document.querySelector(".error");
 const app = document.getElementById("app");
-const bookmark = document.getElementById("bookmark");
 const loading = document.getElementById("loading");
 const header = document.querySelector("header");
 
 window.addEventListener("hashchange", () => {
   app.className = window.location.hash.substring(1)
 
-  if (app.className !== "watch" && app.className !== "bookmark") {
+  if (app.className !== "watch" && app.className !== "save" && app.className !== "home") {
     app.style.display = "none"
-    bookmark.style.display = "none"
-    if (app.className !== "home") error.style.display = "block"
-    else {
-      document.getElementById("intro-screen").style.display = "flex";
-      loading.style.display = "none";
-      header.style.display = "none";
-    }
+    error.style.display = "block"
   }
   else {
-    if (app.className == "watch") startEdTok()
-    if (app.className == "bookmark") {
-      header.style.display = "none";
-      bookmark.style.display = "block"
-      addSaved();
-    }
-    else if (app.className !== "bookmark") bookmark.style.display = "none"
     app.style.display = "block"
     error.style.display = "none"
   }
@@ -117,7 +103,7 @@ async function loadMore() {
 }
 
 async function startEdTok() {
-  if (window.Location.hash !== "#watch") window.location.hash = "watch";
+  window.location.hash = "watch"
 
   userInterest = document.getElementById("interest").value.trim();
   if (!userInterest) return alert("Please enter a topic!");
@@ -138,18 +124,3 @@ app.addEventListener("scroll", () => {
   }
 });
 
-document.querySelector("#home").addEventListener("click", () => {
-  window.location.hash = "#home"
-})
-
-document.querySelector("#saved").addEventListener("click", () => {
-  window.location.hash = "#bookmark"
-})
-
-function addSaved() {
-  const c = localStorage.getItem("Saved").split("///")
-  bookmark.innerHTML = "";
-  c.forEach(i => {
-    bookmark.innerHTML += `<section class="card">${i}</section>`;
-  })
-}
