@@ -5,10 +5,8 @@ html {
   color: #f1f5f9;
 }
 
-@media (max-width: 480px) {
-  html {
-    font-size: 20px;
-  }
+@media (max-width: 800px) {
+  /* CSS that should be displayed if width is equal to or less than 800px goes here */
 }
 
 #intro-screen {
