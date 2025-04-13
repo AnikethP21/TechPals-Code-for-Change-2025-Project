@@ -1,17 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>EdTok</title>
-
     <link rel="stylesheet" href="./src/css/main.css">
-    <script type="module" src="./src/js/main.js" defer></script>
 </head>
+
 <body>
-    <div id="app">
-        <div id="loading"></div>
+    <div id="intro-screen">
+      <h2>What do you want to learn about?</h2>
+      <input type="text" id="interest" placeholder="e.g. space, history, animals">
+      <button onclick="startEdTok()">Start Learning</button>
     </div>
-</body>
-</html>
+  
+    <header style="display: none;">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/63/Wikipedia-logo.png" alt="EdTok Logo">
+      <h1>EdTok</h1>
+    </header>
+  
+    <main id="app" style="display: none;"></main>
+    <div id="loading" style="display: none;">Loading more knowledge...</div>
+  
+    <script src="./src/js/main.js"></script>
+  </body>
+  

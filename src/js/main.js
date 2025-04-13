@@ -1,11 +1,29 @@
 const app = document.getElementById("app");
 const loading = document.getElementById("loading");
-let isLoading = false;
+const header = document.querySelector("header");
 
-async function fetchRandomTopic() {
-  const response = await fetch("https://en.wikipedia.org/api/rest_v1/page/random/summary");
-  const data = await response.json();
-  return data;
+let userInterest = "";
+let isLoading = false;
+let searchOffset = 0;
+
+async function fetchTopicRelatedTo(interest) {
+  const searchUrl = `https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&list=search&srsearch=${encodeURIComponent(
+    interest
+  )}&sroffset=${searchOffset}&srlimit=1`;
+
+  const searchRes = await fetch(searchUrl);
+  const searchData = await searchRes.json();
+
+  if (searchData.query.search.length === 0) return null;
+
+  const title = searchData.query.search[0].title;
+  const summaryUrl = `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title)}`;
+
+  const summaryRes = await fetch(summaryUrl);
+  const summaryData = await summaryRes.json();
+
+  searchOffset += 1;
+  return summaryData;
 }
 
 function createCard(data) {
@@ -41,23 +59,32 @@ async function loadMore() {
   isLoading = true;
   loading.style.display = "block";
 
-  const topic = await fetchRandomTopic();
-  const card = createCard(topic);
-  app.appendChild(card);
+  const topic = await fetchTopicRelatedTo(userInterest);
+  if (topic) {
+    const card = createCard(topic);
+    app.appendChild(card);
+  }
 
   isLoading = false;
   loading.style.display = "none";
 }
 
-async function init() {
+async function startEdTok() {
+  userInterest = document.getElementById("interest").value.trim();
+  if (!userInterest) return alert("Please enter a topic!");
+
+  document.getElementById("intro-screen").style.display = "none";
+  app.style.display = "block";
+  loading.style.display = "block";
+  header.style.display = "flex";
+
+  for (let i = 0; i < 5; i++) {
     await loadMore();
+  }
 }
 
-init();
-
-// Infinite scroll when near the bottom
 app.addEventListener("scroll", () => {
-  if (app.scrollHeight - Math.abs(app.scrollTop) === app.clientHeight) {
+  if(app.scrollHeight - Math.abs(app.scrollTop) === app.clientHeight) {
     loadMore();
   }
 });
