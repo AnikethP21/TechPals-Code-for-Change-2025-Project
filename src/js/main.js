@@ -80,10 +80,6 @@ function createCard(data) {
   save.textContent = "save";
   card.appendChild(save);
 
-  const share = document.createElement("button");
-  share.textContent = "share";
-  card.appendChild(share);
-
   const link = document.createElement("a");
   link.href = data.content_urls?.desktop?.page || "#";
   link.target = "_blank";
