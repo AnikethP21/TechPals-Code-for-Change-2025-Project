@@ -147,3 +147,93 @@ header h1 {
   width: 100vw;
   height: 60vh;
 }
+/* ===== Responsive Layout Enhancements ===== */
+
+/* Smaller phones */
+@media (max-width: 400px) {
+  #interest {
+    font-size: 0.95rem;
+    padding: 0.5rem;
+  }
+
+  #intro-screen h2 {
+    font-size: 1.2rem;
+  }
+
+  .card h2 {
+    font-size: 1.1rem;
+  }
+
+  .card p {
+    font-size: 0.9rem;
+  }
+
+  header h1 {
+    font-size: 0.95rem;
+  }
+
+  .card img {
+    width: 160px;
+    height: 160px;
+  }
+}
+
+/* Tablets (portrait) */
+@media (min-width: 481px) and (max-width: 768px) {
+  html {
+    font-size: 18px;
+  }
+
+  .card {
+    padding: 2rem;
+  }
+
+  .card img {
+    width: 220px;
+    height: 220px;
+  }
+}
+
+/* Tablets & small laptops */
+@media (min-width: 769px) and (max-width: 1024px) {
+  html {
+    font-size: 17px;
+  }
+
+  .card {
+    flex-direction: column;
+    padding: 2rem;
+  }
+
+  .card img {
+    width: 240px;
+    height: 240px;
+  }
+}
+
+/* Large desktops */
+@media (min-width: 1025px) {
+  html {
+    font-size: 16px;
+  }
+
+  #intro-screen {
+    padding: 40px;
+  }
+
+  .card {
+    padding: 3rem;
+  }
+
+  .card img {
+    width: 280px;
+    height: 280px;
+  }
+}
+
+input,
+button,
+textarea,
+select {
+  font-size: 16px !important; /* Prevents iOS zoom bug */
+}
