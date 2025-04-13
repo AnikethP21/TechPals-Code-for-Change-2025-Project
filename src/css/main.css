@@ -136,8 +136,9 @@ header h1 {
 }
 
 .error {
+  margin-top: 40vh;
   display: none;
   text-align: center;
   width: 100vw;
-  height: 100vh;
+  height: 60vh;
 }
