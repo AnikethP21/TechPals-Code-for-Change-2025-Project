@@ -86,4 +86,10 @@ body, html {
     padding: 30px;
     color: #999;
   }
-  
+
+  .error {
+    display: none;
+    text-align: center;
+    width: 100vw;
+    height: 100vh;
+  }

@@ -1,6 +1,21 @@
+
+const error = document.querySelector(".error");
 const app = document.getElementById("app");
 const loading = document.getElementById("loading");
 let isLoading = false;
+
+window.addEventListener("hashchange", () => {
+  app.className = window.location.hash.substring(1)
+
+  if (app.className !== "watch" && app.className !== "save") {
+    app.style.display = "none"
+    error.style.display = "block"
+  }
+  else {
+    app.style.display = "block"
+    error.style.display = "none"
+  }
+})
 
 async function fetchRandomTopic() {
   const response = await fetch("https://en.wikipedia.org/api/rest_v1/page/random/summary");
@@ -27,11 +42,27 @@ function createCard(data) {
   summary.textContent = data.extract;
   card.appendChild(summary);
 
+  const save = document.createElement("button");
+  save.textContent = "save";
+  card.appendChild(save);
+
+  const share = document.createElement("button");
+  share.textContent = "share";
+  card.appendChild(share);
+
   const link = document.createElement("a");
   link.href = data.content_urls?.desktop?.page || "#";
   link.target = "_blank";
   link.textContent = "Read more on Wikipedia";
   card.appendChild(link);
+
+  save.addEventListener("click", e => {
+    if (!localStorage.Saved) localStorage.setItem("Saved", card.innerHTML)
+      
+    if (localStorage.getItem("Saved").includes(card.innerHTML)) return;
+    
+    localStorage.setItem("Saved", localStorage.getItem("Saved") + "///" + card.innerHTML)
+  })
 
   return card;
 }
@@ -51,11 +82,11 @@ async function loadMore() {
 
 async function init() {
     await loadMore();
+    window.location.hash = "watch"
 }
 
 init();
 
-// Infinite scroll when near the bottom
 app.addEventListener("scroll", () => {
   if (app.scrollHeight - Math.abs(app.scrollTop) === app.clientHeight) {
     loadMore();
