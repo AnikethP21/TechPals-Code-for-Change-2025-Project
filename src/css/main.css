@@ -1,3 +1,14 @@
+/* Base responsive font size */
+html {
+  font-size: 18px;
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 20px; /* bigger font for smaller screens */
+  }
+}
+
 #intro-screen {
   height: 100vh;
   width: 100vw;
@@ -11,26 +22,26 @@
 }
 
 #intro-screen h2 {
-  font-size: 24px;
-  margin-bottom: 20px;
+  font-size: 1.4rem;
+  margin-bottom: 1.2rem;
 }
 
 #interest {
-  font-size: 18px;
-  padding: 10px 15px;
+  font-size: 1rem;
+  padding: 0.6rem 0.8rem;
   width: 80%;
   max-width: 300px;
-  margin-bottom: 15px;
+  margin-bottom: 1rem;
   border: 1px solid #ccc;
   border-radius: 8px;
 }
 
 #intro-screen button {
-  font-size: 18px;
+  font-size: 1rem;
   background-color: #2563eb;
   color: white;
   border: none;
-  padding: 10px 20px;
+  padding: 0.6rem 1.2rem;
   border-radius: 8px;
   cursor: pointer;
 }
@@ -64,7 +75,7 @@ header img {
 }
 
 header h1 {
-  font-size: 20px;
+  font-size: 1.1rem;
   font-weight: bold;
   margin: 0;
 }
@@ -84,7 +95,7 @@ header h1 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 24px;
+  padding: 1.5rem;
   box-sizing: border-box;
   background: #fff;
 }
@@ -95,27 +106,27 @@ header h1 {
   object-fit: cover;
   border-radius: 12px;
   box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-  margin-bottom: 20px;
+  margin-bottom: 1.2rem;
 }
 
 .card h2 {
-  font-size: 22px;
+  font-size: 1.3rem;
   text-align: center;
-  margin-bottom: 10px;
+  margin-bottom: 0.6rem;
 }
 
 .card p {
-  font-size: 16px;
+  font-size: 1rem;
   color: #444;
   text-align: center;
   max-width: 90%;
 }
 
 .card a {
-  margin-top: 12px;
+  margin-top: 0.8rem;
   color: #2563eb;
   text-decoration: underline;
-  font-size: 15px;
+  font-size: 0.9rem;
 }
 
 #loading {
