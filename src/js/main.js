@@ -3,6 +3,7 @@ window.location.hash = "home"
 
 const error = document.querySelector(".error");
 const app = document.getElementById("app");
+const bookmark = document.getElementById("bookmark");
 const loading = document.getElementById("loading");
 const header = document.querySelector("header");
 
@@ -11,6 +12,7 @@ window.addEventListener("hashchange", () => {
 
   if (app.className !== "watch" && app.className !== "bookmark") {
     app.style.display = "none"
+    bookmark.style.display = "none"
     if (app.className !== "home") error.style.display = "block"
     else {
       document.getElementById("intro-screen").style.display = "flex";
@@ -20,6 +22,12 @@ window.addEventListener("hashchange", () => {
   }
   else {
     if (app.className == "watch") startEdTok()
+    if (app.className == "bookmark") {
+      header.style.display = "none";
+      bookmark.style.display = "block"
+      addSaved();
+    }
+    else if (app.className !== "bookmark") bookmark.style.display = "none"
     app.style.display = "block"
     error.style.display = "none"
   }
@@ -137,3 +145,11 @@ document.querySelector("#home").addEventListener("click", () => {
 document.querySelector("#saved").addEventListener("click", () => {
   window.location.hash = "#bookmark"
 })
+
+function addSaved() {
+  const c = localStorage.getItem("Saved").split("///")
+  bookmark.innerHTML = "";
+  c.forEach(i => {
+    bookmark.innerHTML += i;
+  })
+}

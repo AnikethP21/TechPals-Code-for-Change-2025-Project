@@ -273,3 +273,13 @@ body {
 #home:hover, #saved:hover {
    color: #bbbbbb;
 }
+
+#bookmark {
+  position: fixed;
+  display: block;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #0f172a;
+}
